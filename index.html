@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/css/jquery-jvectormap-2.0.5.css">
+    <!-- Droid Arabic Kufi -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Arabic+Kufi:400,700&display=swap">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- DataTables -->
+    <link href="https://cdn.datatables.net/v/dt/dt-1.13.4/datatables.min.css" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap');
+
+        * {
+            font-family: 'Almarai', sans-serif;
+        }
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
+        <!-- Container wrapper -->
+        <div class="container">
+
+            <!-- Navbar brand -->
+            <a class="navbar-brand" href="#">Brand</a>
+
+            <!-- Toggle button -->
+            <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Collapsible wrapper -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-mdb-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <!-- Dropdown menu -->
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>
+                                <a class="dropdown-item" href="#">Action</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Another action</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider" />
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!-- Icons -->
+                <ul class="navbar-nav d-flex flex-row me-1">
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i></a>
+                    </li>
+                    <li class="nav-item me-3 me-lg-0">
+                        <a class="nav-link" href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!-- Container wrapper -->
+    </nav>
+    <!-- Navbar -->
+
+    <main class="my-5">
+        <div class="container">
+
+            <div class="row py-5">
+                <div class="col-lg-3 col-md-4">
+                    <div class="sidebar border border-light rounded-3  p-4" style="background: #efefef">
+                        <div class="widget mb-4">
+                            <h5 class="mb-3 widget-title show-by"></h5>
+                            <ul class="widget-list content-filter list-unstyled">
+                                <li class="list-item all_continents">
+                                    <input type="radio" id="AllContinents_filter" class="mx-1 filter-radio"
+                                        name="content-filter" value="All_Continents" checked>
+                                    <label class="mx-1 " for="AllContinents_filter"></label>
+                                </li>
+                                <li class="list-item all_countries">
+                                    <input type="radio" id="AllWorld_filter" class="mx-1 filter-radio"
+                                        name="content-filter" value="All_World">
+                                    <label class="mx-1 " for="AllWorld_filter"></label>
+                                </li>
+                                <li class="list-item uae">
+                                    <input type="radio" id="AE_filter" class="mx-1 filter-radio" name="content-filter"
+                                        value="AE">
+                                    <label class="mx-1 " for="AE_filter"></label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="widget mb-4 continents-list-widget">
+                            <h5 class="mb-3 widget-title filter-by-continent"></h5>
+                            <ul class="widget-list continents-list filter-list list-unstyled">
+                                <li class="list-item all">
+                                    <input type="radio" id="AllContinents" class="mx-1 filter-radio" name="continents"
+                                        value="All_Continents" checked onchange="changeMapByRegion('All_Continents')">
+                                    <label class="mx-1 " for="AllContinents">الكل</label>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-8">
+                    <div id="world-map" class="border border-light rounded-3 p-4"
+                        style="background: #efefef;height: 100%;overflow: hidden;cursor: pointer;">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="container map-container table-container my-5 p-0">
+                        <div class=" data-header d-flex align-items-center justify-content-between p-3 my-4 border border-light rounded-3"
+                            style="background: #f9f9f9">
+                            <h5 class="table-title m-0"></h5>
+                            <h5 class="count"></h5>
+                        </div>
+                        <table id="DataTable" class=" table table-hover border-light rounded-3" >
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="index text-center" style="max-width:50px">#</th>
+                                    <th scope="col" class="country"></th>
+                                    <th scope="col" class="continent"></th>
+                                    <th scope="col" class="entinty"></th>
+                                    <th scope="col" class="agreement"></th>
+                                    <th scope="col" class="goals"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="table-body">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="loading-container">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./assets/js/jquery-3.4.1.min.js"></script>
+    <script src="./assets/js/jquery-jvectormap-2.0.5.min.js"></script>
+
+    <!-- Bootstrap MDB CDN  latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
+    <script src="./assets/js/papaparse.min.js"></script>
+    <!-- jquery jvectormap -->
+    <script src="./assets/js/jquery-jvectormap-all-mill.js"></script>
+    <!-- DataTable JS CDN  -->
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <!-- DataTable Bootstrap CDN  -->
+    <!-- <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script> -->
+    <script src="./assets/js/main.js"></script>
+
+
+</body>
+
+</html>
